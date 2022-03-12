@@ -1,0 +1,97 @@
+# cerbot issue on aws
+https://stackoverflow.com/questions/59525274/lets-encrypt-certbot-on-aws-linux
+# setup cerbot
+https://certbot.eff.org/lets-encrypt/centosrhel8-nginx
+# rsync to aws
+rsync -avz -e 'ssh -i FILE.pem' FOLDER USER@SERVER:~/
+# allow gmail access
+https://stackoverflow.com/questions/41565141/send-body-form-to-gmail-via-node-js
+# dynamic inputs counter angular
+https://stackoverflow.com/a/51524846
+# images augmentation
+https://towardsdatascience.com/data-augmentation-techniques-in-python-f216ef5eed69
+# nodejs websocket
+https://stackoverflow.com/a/50131902
+https://gist.github.com/Globik/5a63e8683ab1d1c2c72fd25a798ae2d8
+https://dev.to/karlhadwen/node-js-websocket-tutorial-real-time-chat-room-using-multiple-clients-24ad
+http://iostreamer.me/ws/node.js/jwt/2016/05/08/websockets_authentication.html
+# Emacs : opening OSX documents that synced to icloud
+https://emacs.stackexchange.com/questions/53904/why-cant-i-list-the-contents-of-desktop-on-macos-using-diredhttps://emacs.stackexchange.com/questions/53904/why-cant-i-list-the-contents-of-desktop-on-macos-using-dired
+# flutter - multidex issue
+https://github.com/flutter/flutter/issues/47517
+# SSL certificates python3 (macOS)
+https://github.com/hardikvasa/google-images-download/issues/140
+# cnn model
+https://www.geeksforgeeks.org/python-image-classification-using-keras/
+# rtl8192eu wifi driver issue (Displays nets, but not connected)
+https://github.com/Mange/rtl8192eu-linux-driver/issues/46
+# react not crashed on heroku
+build it then deply it !
+Add this to package.json
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "heroku-postbuild": "npm run build"
+  }
+ Add serve to dependensies
+
+# websockets ping/pong
+https://stackoverflow.com/questions/26971026/handling-connection-loss-with-websockets
+# 3d clouds point
+https://arxiv.org/pdf/1604.03265.pdf
+https://towardsdatascience.com/deep-learning-on-point-clouds-implementing-pointnet-in-google-colab-1fd65cd3a263
+https://github.com/nikitakaraevv/pointnet/blob/master/nbs/PointNetClass.ipynb
+https://en.wikipedia.org/wiki/OFF_(file_format)
+# skaia craft
+https://s3.amazonaws.com/files.enjin.com/382770/launcher/3/SkaiaCraft_Launcher.zip
+# pulse audio + ssr
+https://www.maartenbaert.be/simplescreenrecorder/recording-game-audio/
+sudo pacman -Syu gnome-disk-utility
+https://www.youtube.com/watch?v=LPrrRjXU9Rs
+https://towardsdatascience.com/multi-class-text-classification-with-lstm-1590bee1bd17
+# flask jwt
+https://flask-jwt-extended.readthedocs.io/en/stable/tokens_in_cookies/
+# react native stuck on installDebug
+https://stackoverflow.com/questions/46933612/react-native-project-stuck-on-appinstalldebug/52796355
+# emacs omnisharp issue fix
+https://stackoverflow.com/questions/54380924/reference-assemblies-for-framework-netframework-version-v4-7-1-were-not-found
+# tahoma font
+https://www.fontpalace.com/font-download/tahoma/
+# unity3d error webgl linux
+https://forum.unity.com/threads/beginner-build-for-webgl-on-linux-fails-error-while-loading-shared-libraries-libtinfo-so-5.978162/
+sudo ln -s /usr/lib/libtinfo.so.6 /usr/lib/libtinfo.so.5
+# emacs omnisharp error with unity assemblies not found (export FrameworkPathOverride=/etc/mono/4.7.1-api)
+https://stackoverflow.com/a/62519503
+# vim eslinter configuration for nextjs
+https://stackoverflow.com/a/61160875
+# sha1 package 
+https://stackoverflow.com/questions/54868611/how-to-get-sha-1-key-in-react-native-cli
+# flutter upload files
+https://flutteragency.com/pick-files-and-images-for-upload-with-flutter-web/
+# flutter on overscroll child
+https://stackoverflow.com/questions/60579335/flutter-listview-scroll-parent-listview-when-child-listview-reach-bottom-c
+# expo background location
+https://stackoverflow.com/a/58781644
+# Queue nodejs
+https://thecodebarbarian.com/queueing-function-calls-with-node.js-and-mongodb.html
+# app bundle firebase
+https://firebase.google.com/codelabs/appdistribution-app-bundles#2
+# vuejs transition issue
+https://github.com/vuejs/vue-next/issues/906#issuecomment-712829052
+# Fix git-bash support vscode
+https://github.com/formulahendry/vscode-code-runner/issues/468
+# c++ important make flags
+# debug
+CXXFLAGS	:= -std=c++20 -pedantic-errors -Wall -Weffc++ -Wextra -Wsign-conversion -Werror -g 
+# release
+CXXFLAGS	:= -std=c++20 -pedantic-errors -Wall -Wextra -Weffc++ -Wsign-conversion -Werror -g -O3 -s -DNDEBUG
+# unreal engine aim offset
+https://www.youtube.com/watch?v=DCDck8Zdo-I&ab_channel=TheSargKyle
+# unreal engine replicate updated bone
+https://answers.unrealengine.com/questions/512242/replicating-bone-rotation-modifytransform.html?sort=oldest
+# unreal engine list view items
+https://answers.unrealengine.com/questions/816452/how-to-use-settext-with-list-view.html
+# pentest
+https://github.com/sundowndev/hacker-roadmap
+# web3 things : solidity, hardhat, openzeppelin, alchemy blockchain, https://faucets.chain.link/rinkeby
