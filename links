@@ -81,7 +81,6 @@ https://firebase.google.com/codelabs/appdistribution-app-bundles#2
 https://github.com/vuejs/vue-next/issues/906#issuecomment-712829052
 # Fix git-bash support vscode
 https://github.com/formulahendry/vscode-code-runner/issues/468
-# c++ important make flags
 # unreal engine aim offset
 https://www.youtube.com/watch?v=DCDck8Zdo-I&ab_channel=TheSargKyle
 # unreal engine replicate updated bone
@@ -91,6 +90,6 @@ https://answers.unrealengine.com/questions/816452/how-to-use-settext-with-list-v
 # pentest
 https://github.com/sundowndev/hacker-roadmap
 # web3 things : solidity, hardhat, openzeppelin, alchemy blockchain, https://faucets.chain.link/rinkeby
-# makefile flags
+# c++ important make flags
 # CXXFLAGS := -std=c++20 -Wall -Wextra -DEBUG -g -pedantic-errors -Weffc++ -Wsign-conversion -Werror
 # release: CXXFLAGS := -std=c++17 -Wall -Wextra -O2 -s -DNDEBUG -pedantic-errors
