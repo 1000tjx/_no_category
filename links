@@ -93,3 +93,4 @@ https://github.com/sundowndev/hacker-roadmap
 # c++ important make flags
 # CXXFLAGS := -std=c++20 -Wall -Wextra -DEBUG -g -pedantic-errors -Weffc++ -Wsign-conversion -Werror
 # release: CXXFLAGS := -std=c++17 -Wall -Wextra -O2 -s -DNDEBUG -pedantic-errors
+# set java version on archlinux: https://rtfm.co.ua/en/arch-linux-set-a-java-version/
