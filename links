@@ -94,3 +94,5 @@ https://github.com/sundowndev/hacker-roadmap
 # CXXFLAGS := -std=c++20 -Wall -Wextra -DEBUG -g -pedantic-errors -Weffc++ -Wsign-conversion -Werror
 # release: CXXFLAGS := -std=c++17 -Wall -Wextra -O2 -s -DNDEBUG -pedantic-errors
 # set java version on archlinux: https://rtfm.co.ua/en/arch-linux-set-a-java-version/
+# cross origins
+# chrome://flags/#unsafely-treat-insecure-origin-as-secure 
