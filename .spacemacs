@@ -61,12 +61,15 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      (javascript :variables
-                 ;;javascript-fmt-on-save t
+                 javascript-fmt-on-save t
+                 js2-mode-show-strict-warnings nil
+                 js2-mode-show-parse-errors nil
+                 javascript-import-tool 'import-js
                  javascript-linter 'eslint
                  javascript-fmt-tool 'prettier
                  javascript-backend 'lsp)
      (typescript :variables
-                 ;;typescript-fmt-on-save t
+                 typescript-fmt-on-save t
                  typescript-linter 'eslint
                  typescript-fmt-tool 'prettier
                  typescript-backend 'lsp)
@@ -273,12 +276,15 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         madhat2r
                          majapahit-dark
+                         granger
+                         ujelly
                          ample-zen
-                         kaolin-dark
-                         spacemacs-dark
-                         spacemacs-light)
+                         soft-charcoal
+                         solarized-gruvbox-dark
+                         obsidian
+                         jazz
+                         )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -588,6 +594,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default git-magit-status-fullscreen t)
+  (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "Tahoma"))
   )
 
 
@@ -651,5 +658,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(hl-line ((t (:inherit highlight :weight bold))))
  )
 )
