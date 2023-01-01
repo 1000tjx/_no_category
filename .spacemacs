@@ -38,49 +38,38 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     react
      auto-completion
+     ;; better-defaults
      emacs-lisp
+     git
+     helm
+     ;;lsp
      ;; markdown
      multiple-cursors
-     yaml
-     auto-completion
-     better-defaults
-     emacs-lisp
-     graphql
-     helm
-     lsp
-     json
      org
-     syntax-checking
-     version-control
-     themes-megapack
-     prettier
-     web-beautify
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     (javascript :variables
-                 javascript-fmt-on-save t
-                 js2-mode-show-strict-warnings nil
-                 js2-mode-show-parse-errors nil
-                 javascript-import-tool 'import-js
-                 javascript-linter 'eslint
-                 javascript-fmt-tool 'prettier
-                 javascript-backend 'lsp)
+     ;; spell-checking
+     react
+     syntax-checking
+     version-control
      (typescript :variables
-                 typescript-fmt-on-save t
-                 typescript-linter 'eslint
+                 typescript-backend 'lsp
+                 ;;typescript-linter 'eslint
                  typescript-fmt-tool 'prettier
-                 typescript-backend 'lsp)
-     (git :variables
-          git-enable-magit-delta-plugin t
-          git-enable-magit-gitflow-plugin t
-          git-enable-magit-svn-plugin t
-          git-enable-magit-todos-plugin t)
-     (multiple-cursors :variables
-                       multiple-cursors-backend 'evil-mc)
+                 ;;typescript-lsp-linter nil
+                 typescript-fmt-on-save t)
+
+     (javascript :variables
+                 javascript-backend 'lsp
+                 javascript-fmt-tool 'prettier
+                 ;;javascript-linter 'eslint
+                 node-add-modules-path t
+                 ;;javascript-lsp-linter nil
+                 javascript-fmt-on-save t)
      (treemacs :variables
+               treemacs-no-png-images t
                treemacs-use-icons-dired nil)
      (html :variables
            web-mode-enable-auto-indentation t
@@ -93,7 +82,6 @@ This function should only modify configuration layer settings."
      )
 
 
-
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
    ;; loaded using load/require/use-package in the user-config section below in
@@ -102,13 +90,15 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(exec-path-from-shell auto-rename-tag expand-region)
+   dotspacemacs-additional-packages '(lsp-tailwindcss auto-rename-tag)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    spaceline
+                                    )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -166,14 +156,14 @@ It should only modify the values of Spacemacs settings."
    ;; This is an advanced option and should not be changed unless you suspect
    ;; performance issues due to garbage collection operations.
    ;; (default '(100000000 0.1))
-   dotspacemacs-gc-cons '(100000000 0.1)
+   dotspacemacs-gc-cons '(100000000 10.0)
 
    ;; Set `read-process-output-max' when startup finishes.
    ;; This defines how much data is read from a foreign process.
    ;; Setting this >= 1 MB should increase performance for lsp servers
    ;; in emacs 27.
    ;; (default (* 1024 1024))
-   dotspacemacs-read-process-output-max (* 1024 1024)
+   dotspacemacs-read-process-output-max (* 3 1024 1024)
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
@@ -276,20 +266,25 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         majapahit-dark
+                         solarized-gruvbox-dark
+                         soft-charcoal
                          granger
+                         majapahit-dark
                          ujelly
                          ample-zen
-                         soft-charcoal
-                         solarized-gruvbox-dark
                          obsidian
                          jazz
+                         spacemacs-dark
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
    ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
-   ;; `vanilla' is default Emacs -theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
+   ;; (default '(spacemacs :separator wave :separator-scale 1.5))
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -299,7 +294,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("MonacoBSemi"
-                               :size 12.0
+                               :size 13.0
                                :weight bold
                                :width normal)
 
@@ -442,7 +437,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Show the scroll bar while scrolling. The auto hide time can be configured
    ;; by setting this variable to a number. (default t)
-   dotspacemacs-scroll-bar-while-scrolling t
+   dotspacemacs-scroll-bar-while-scrolling nil
 
    ;; Control line numbers activation.
    ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
@@ -585,7 +580,7 @@ default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
   (spacemacs/load-spacemacs-env)
-  )
+)
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -593,9 +588,15 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
+  ;;(byte-recompile-directory "~/.emacs.d/" nil 'force)
   (setq-default git-magit-status-fullscreen t)
   (when window-system (set-fontset-font "fontset-default" '(#x600 . #x6ff) "Tahoma"))
-  )
+
+
+  ;; (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+  ;; (run-with-idle-timer 5 t #'garbage-collect)
+)
 
 
 (defun dotspacemacs/user-load ()
@@ -603,7 +604,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  )
+)
 
 
 (defun dotspacemacs/user-config ()
@@ -612,17 +613,28 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  ;;;;;;;;;;;;;;
+  (setq lsp-use-plists t)
+  (setq lsp-log-io nil)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-enable-file-watchers nil)
+
+
   (setq projectile-enable-caching t)
+  (setq lsp-ui-sideline-enable nil) ;; Sideline code actions * disable whole sideline via
+  (setq lsp-enable-symbol-highlighting nil) ;; lsp-ui-doc - on hover dialogs. * disable via
+
   (setq ns-use-srgb-colorspace nil)
   (setq powerline-default-separator 'arrow)
-  (use-package exec-path-from-shell
-    :config (exec-path-from-shell-initialize))
-  (setq create-lockfiles nil)
-  (setq global-evil-mc-mode  1)
+
+
+
   (add-hook 'prog-mode-hook 'subword-mode)
   (add-hook 'web-mode-hook 'auto-rename-tag-mode)
   (add-hook 'js-mode-hoonk 'auto-rename-tag-mode)
   (add-hook 'js2-mode-hook 'auto-rename-tag-mode)
+
   (setq-default
    ;; js2-mode
    js2-basic-offset 2
@@ -635,7 +647,30 @@ before packages are loaded."
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2)
-  )
+  (add-hook 'prog-mode-hook 'indent-guide-mode)
+  ;;(add-hook 'web-mode-hook 'lsp-tailwindcss)
+
+  ;; treemacs  config
+  (use-package treemacs
+    :ensure t
+    :defer t
+    :config
+    (progn
+      (treemacs-indent-guide-mode t)
+      (treemacs-follow-mode t)
+      (treemacs-filewatch-mode t)
+      )
+  ) ;; treemacs config end
+
+  ;; lsp-mode tailwind
+  (add-hook 'before-save-hook 'lsp-tailwindcss-rustywind-before-save)
+  (use-package lsp-tailwindcss
+    :init
+    (setq lsp-tailwindcss-add-on-mode t))
+  ;;(setq company-minimum-prefix-length 1)
+
+
+)
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -651,13 +686,11 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(auto-rename-tag magit-delta magit-gitflow magit-popup magit-svn magit-todos exec-path-from-shell treemacs-all-the-icons afternoon-theme alect-themes ample-theme ample-zen-theme anti-zenburn-theme apropospriate-theme badwolf-theme birds-of-paradise-plus-theme bubbleberry-theme busybee-theme cherry-blossom-theme chocolate-theme clues-theme color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow cyberpunk-theme dakrone-theme darkmine-theme darkokai-theme darktooth-theme django-theme doom-themes dracula-theme espresso-theme exotica-theme eziam-themes farmhouse-themes flatland-theme flatui-theme gandalf-theme gotham-theme grandshell-theme gruber-darker-theme gruvbox-theme hc-zenburn-theme hemisu-theme heroku-theme inkpot-theme ir-black-theme jazz-theme jbeans-theme kaolin-themes light-soap-theme lush-theme madhat2r-theme majapahit-theme material-theme minimal-theme modus-themes moe-theme molokai-theme monochrome-theme monokai-theme mustang-theme naquadah-theme noctilux-theme obsidian-theme occidental-theme oldlace-theme omtose-phellack-theme organic-green-theme phoenix-dark-mono-theme phoenix-dark-pink-theme planet-theme professional-theme purple-haze-theme railscasts-theme rebecca-theme reverse-theme seti-theme smyx-theme soft-charcoal-theme soft-morning-theme soft-stone-theme solarized-theme soothe-theme autothemer spacegray-theme subatomic-theme subatomic256-theme sublime-themes sunny-day-theme tango-2-theme tango-plus-theme tangotango-theme tao-theme toxi-theme twilight-anti-bright-theme twilight-bright-theme twilight-theme ujelly-theme underwater-theme white-sand-theme zen-and-art-theme zenburn-theme zonokai-emacs tide typescript-mode add-node-modules-path ivy yaml ggtags helm-gtags grizzl js-doc js2-mode nodejs-repl npm-mode prettier-js simple-httpd tern web-beautify ac-ispell auto-complete auto-yasnippet browse-at-remote flycheck-pos-tip pos-tip fuzzy git-gutter-fringe fringe-helper git-gutter helm-c-yasnippet helm-company company helm-lsp lsp-origami origami lsp-treemacs lsp-ui lsp-mode markdown-mode yasnippet-snippets yasnippet ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
- '(warning-suppress-log-types '((use-package))))
+   '(auto-rename-tag lsp-tailwindcss yasnippet-snippets ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree ujelly-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org tide term-cursor tagedit symon symbol-overlay sublime-themes string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc solarized-theme soft-charcoal-theme smeargle slim-mode scss-mode sass-mode rjsx-mode restart-emacs request rainbow-delimiters quickrun pug-mode prettier-js popwin pcre2el password-generator paradox overseer orgit-forge org-superstar org-rich-yank org-projectile org-present org-pomodoro org-mime org-download org-contrib org-cliplink open-junk-file obsidian-theme npm-mode nodejs-repl nameless multi-line majapahit-theme macrostep lsp-ui lsp-treemacs lsp-origami lorem-ipsum livid-mode link-hint json-reformat json-navigator json-mode js2-refactor js-doc jazz-theme inspector info+ indent-guide impatient-mode hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link git-gutter-fringe fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr emmet-mode elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word company-web column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile ample-zen-theme aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(hl-line ((t (:inherit highlight :weight bold))))
- )
+ '(default ((((class color) (min-colors 89)) (:foreground "#a89984" :background "#282828")))))
 )
