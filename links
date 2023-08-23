@@ -108,3 +108,10 @@ https://github.com/flutter/flutter/issues/71418
 https://answers.unity.com/questions/307150/rotate-an-object-toward-the-direction-the-joystick.html
 # emacs mac builds
 https://github.com/jimeh/emacs-builds
+# ideavim multiple cursors
+https://stackoverflow.com/questions/55202799/ideavim-multi-cursor-usage
+# idea vim camelcase motion
+map w [w
+map e ]w
+map b [b
+
