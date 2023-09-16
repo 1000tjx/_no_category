@@ -1,0 +1,32 @@
+set clipboard=unnamed
+
+Plug "easymotion/vim-easymotion"
+Plug "tpope/vim-surround"
+Plug "terryma/vim-multiple-cursors"
+
+
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap <A-n> <Plug>Next
+xmap <A-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
+" Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
+" <A-n> is used to enter accented text e.g. ñ
+nmap <S-C-n> <Plug>AllWholeOccurrences
+xmap <S-C-n> <Plug>AllWholeOccurrences
+nmap g<S-C-n> <Plug>AllOccurrences
+xmap g<S-C-n> <Plug>AllOccurrences
+
+map ma <S-C-n>
+map mc <C-n>
+map mx <C-x>
+map mr <C-p>
+
+map w [w
+map e ]w
+map b [b
